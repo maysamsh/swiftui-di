@@ -1,0 +1,26 @@
+{
+    "sample":[
+      {
+        "description":"A laptop on a desk",
+        "image-url":"https://picsum.photos/id/0/1000/600"
+      },
+      {
+        "description":"An open book",
+        "image-url":"https://picsum.photos/id/24/1000/600"
+      },
+      {
+        "description":"A red mug with prints",
+        "image-url":"https://picsum.photos/id/24/1000/600"
+      },
+      {
+        "description":"A girl in the meadow",
+        "image-url":"https://picsum.photos/id/64/1000/600"
+      },
+      {
+        "description":"An old car",
+        "image-url":"https://picsum.photos/id/111/1000/600"
+      }
+      
+    ]
+  
+  }
