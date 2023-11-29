@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct ImageModel: Identifiable {
+    let id = UUID()
+    let title: String
+    let url: URL
+}

@@ -1,26 +1,29 @@
 {
     "sample":[
       {
+        "id":"4cdad0d1-aef8-48a5-832b-18c6c973f084",
         "description":"A laptop on a desk",
         "image-url":"https://picsum.photos/id/0/1000/600"
       },
       {
+        "id":"3cf78b14-1a14-4f20-83e5-38afe7b34d15",
         "description":"An open book",
         "image-url":"https://picsum.photos/id/24/1000/600"
       },
       {
+        "id":"673c5941-5152-4579-998a-7128595ab1c4",
         "description":"A red mug with prints",
         "image-url":"https://picsum.photos/id/24/1000/600"
       },
       {
+        "id":"eceefa77-40f0-41f3-a80c-255a4d739440",
         "description":"A girl in the meadow",
         "image-url":"https://picsum.photos/id/64/1000/600"
       },
       {
+        "id":"348b265d-8227-43af-a753-ff8b5f8dce46",
         "description":"An old car",
         "image-url":"https://picsum.photos/id/111/1000/600"
-      }
-      
+      } 
     ]
-  
   }
