@@ -40,7 +40,7 @@ final class ViewModel: ObservableObject {
     }
     
     func fetch() {
-        guard let url = URL(string: "https://gist.githubusercontent.com/awadhawan18/54592d9ec5e7be1b39013cdd7e78dae4/raw/54a90fe99b8e821e273e1997f356d04308bdb232/Random-images.json") else {
+        guard let url = URL(string: "https://gist.githubusercontent.com/maysamsh/4fa79a18af01eee593e642567f86e8f8/raw/83b53c747bedf4329e576fce276059d466625267/image-file-sample.json") else {
             return
         }
         
@@ -80,22 +80,27 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack {
-            ForEach(viewModel.images) { item in
-                HStack {
-                    AsyncImage(url: item.url) { image in
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 50, height: 50)
-                    } placeholder: {
-                        EmptyView()
+        NavigationStack {
+            VStack(alignment: .leading) {
+                ForEach(viewModel.images) { item in
+                    NavigationLink {
+                        ImageViewer(item)
+                    } label: {
+                        HStack {
+                            AsyncImage(url: item.url) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 50, height: 50)
+                            } placeholder: {
+                                EmptyView()
+                            }
+                            Text(item.title)
+                        }
                     }
-                    Text(item.title)
                 }
             }
         }
-        .padding()
         .onAppear {
             viewModel.fetch()
         }

@@ -20,6 +20,7 @@
 		7D5E48652B0278E4009B5FB1 /* RouterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E48632B0278E4009B5FB1 /* RouterService.swift */; };
 		7D5E48672B027BC0009B5FB1 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E48662B027BC0009B5FB1 /* APIService.swift */; };
 		7D5E48682B027BC0009B5FB1 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E48662B027BC0009B5FB1 /* APIService.swift */; };
+		7DA4250A2B0A815F00BD70A1 /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA425092B0A815F00BD70A1 /* ImageViewer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		7D5E48602B0278CE009B5FB1 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		7D5E48632B0278E4009B5FB1 /* RouterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterService.swift; sourceTree = "<group>"; };
 		7D5E48662B027BC0009B5FB1 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		7DA425092B0A815F00BD70A1 /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				7D5E485F2B027899009B5FB1 /* Services */,
 				7D5E48352B02784A009B5FB1 /* TDD_AppApp.swift */,
 				7D5E48372B02784A009B5FB1 /* ContentView.swift */,
+				7DA425092B0A815F00BD70A1 /* ImageViewer.swift */,
 				7D5E48392B02784B009B5FB1 /* Assets.xcassets */,
 				7D5E483B2B02784B009B5FB1 /* Preview Content */,
 			);
@@ -280,6 +283,7 @@
 				7D5E48642B0278E4009B5FB1 /* RouterService.swift in Sources */,
 				7D5E48672B027BC0009B5FB1 /* APIService.swift in Sources */,
 				7D5E48612B0278CE009B5FB1 /* NetworkingService.swift in Sources */,
+				7DA4250A2B0A815F00BD70A1 /* ImageViewer.swift in Sources */,
 				7D5E48382B02784A009B5FB1 /* ContentView.swift in Sources */,
 				7D5E48362B02784A009B5FB1 /* TDD_AppApp.swift in Sources */,
 			);
