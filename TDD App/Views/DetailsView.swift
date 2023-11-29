@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-struct ImageViewer: View {
+final class DetailsViewModel: ObservableObject {
+    
+}
+
+struct DetailsView: View {
     private let imageModel: ImageModel
     
     init(_ model: ImageModel) {
@@ -34,5 +38,5 @@ struct ImageViewer: View {
 #Preview {
     let model = ImageModel(title: "A laptop on a desk",
                            url: URL(string: "https://picsum.photos/id/0/1000/600")!)
-   return  ImageViewer(model)
+   return  DetailsView(model)
 }

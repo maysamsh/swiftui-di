@@ -14,10 +14,12 @@ struct SampleImagesResponse: Codable {
     struct ImageItem: Codable {
         let description: String?
         let imageURL: String?
+        let id: String?
 
         enum CodingKeys: String, CodingKey {
             case description
             case imageURL = "image-url"
+            case id
         }
     }
 }
@@ -28,7 +30,12 @@ struct ImageModel: Identifiable {
     let url: URL
 }
 
-final class ViewModel: ObservableObject {
+struct RemoteAssets {
+    static let extraData = "https://gist.github.com/maysamsh/c539e299b061591a1e316f0fcac598b2/raw/b1f6b90db9bb41ebd55788ce482e9a33ebaf8186/extra-data-sample.json"
+    static let images = "https://gist.github.com/maysamsh/bd3b57b4bd9266de24bfc3203fc5f85b/raw/9df83e13163d1aed04c4dc6be68264ad6ca6cda7/images-sample.json"
+}
+
+final class ContentViewModel: ObservableObject {
     let apiService: NetworkingService
     @Published private (set) var images: [ImageModel]
     private var cancellable: Set<AnyCancellable>
@@ -40,7 +47,7 @@ final class ViewModel: ObservableObject {
     }
     
     func fetch() {
-        guard let url = URL(string: "https://gist.githubusercontent.com/maysamsh/4fa79a18af01eee593e642567f86e8f8/raw/83b53c747bedf4329e576fce276059d466625267/image-file-sample.json") else {
+        guard let url = URL(string: RemoteAssets.images) else {
             return
         }
         
@@ -73,10 +80,10 @@ final class ViewModel: ObservableObject {
 }
 
 struct ContentView: View {
-    @StateObject var viewModel: ViewModel
+    @StateObject var viewModel: ContentViewModel
     
     init() {
-        _viewModel = StateObject(wrappedValue: ViewModel())
+        _viewModel = StateObject(wrappedValue: ContentViewModel())
     }
     
     var body: some View {
@@ -84,7 +91,7 @@ struct ContentView: View {
             VStack(alignment: .leading) {
                 ForEach(viewModel.images) { item in
                     NavigationLink {
-                        ImageViewer(item)
+                        DetailsView(item)
                     } label: {
                         HStack {
                             AsyncImage(url: item.url) { image in
