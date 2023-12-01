@@ -36,9 +36,6 @@ struct ContentView: View {
                 }
             }
         }
-        .onAppear {
-            viewModel.fetch()
-        }
     }
 }
 

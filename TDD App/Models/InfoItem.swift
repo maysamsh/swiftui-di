@@ -6,3 +6,11 @@
 //
 
 import Foundation
+import SwiftUI
+
+struct InfoItem: Identifiable {
+    let id = UUID()
+    let imageID: String
+    let story: String
+    let colour: Color
+}

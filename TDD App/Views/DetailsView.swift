@@ -7,15 +7,13 @@
 
 import SwiftUI
 
-final class DetailsViewModel: ObservableObject {
-    
-}
-
 struct DetailsView: View {
+    @StateObject private var viewModel: DetailsViewModel
     private let imageModel: ImageModel
     
     init(_ model: ImageModel) {
         self.imageModel = model
+        _viewModel = StateObject(wrappedValue: DetailsViewModel(imageModel: model))
     }
     
     var body: some View {
@@ -24,19 +22,24 @@ struct DetailsView: View {
                 image
                     .resizable()
                     .scaledToFit()
-                    .frame(width: .infinity, height: 300)
+                    .frame(height: 300)
             } placeholder: {
                 EmptyView()
             }
-
+            if let extraData = viewModel.imageExtraData {
+                Text(extraData.story)
+                    .font(.caption)
+                    .padding()
+            }
             Spacer()
         }
         .navigationTitle(self.imageModel.title)
+        .background(viewModel.imageExtraData?.colour ?? Color.white)
     }
 }
 
 #Preview {
-    let model = ImageModel(title: "A laptop on a desk",
+    let model = ImageModel(imageID: "", title: "A laptop on a desk",
                            url: URL(string: "https://picsum.photos/id/0/1000/600")!)
    return  DetailsView(model)
 }

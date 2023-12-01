@@ -9,14 +9,15 @@ import Foundation
 import Combine
 
 final class ContentViewModel: ObservableObject {
-    let apiService: NetworkingService
     @Published private (set) var images: [ImageModel]
+    private let apiService: NetworkingService
     private var cancellable: Set<AnyCancellable>
     
     init(apiService: NetworkingService = APIService()) {
         self.images = [ImageModel]()
         self.cancellable = Set<AnyCancellable>()
         self.apiService = apiService
+        fetch()
     }
     
     func fetch() {
@@ -44,8 +45,11 @@ final class ContentViewModel: ObservableObject {
         }
         
         self.images = responseImages.compactMap { item in
-            if let urlString = item.imageURL, let url = URL(string: urlString), let title = item.description {
-                return ImageModel(title: title, url: url)
+            if let urlString = item.imageURL,
+               let url = URL(string: urlString),
+               let imageID = item.id,
+               let title = item.description {
+                return ImageModel(imageID: imageID, title: title, url: url)
             }
             return nil
         }
