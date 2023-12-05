@@ -25,7 +25,7 @@ final class ContentViewModel: ObservableObject {
             return
         }
         
-        apiService.request(type: SampleImagesResponse.self, url: url)
+        apiService.fetchImages()
             .sink(receiveCompletion: { result in
                 if case let .failure(error) = result {
                     print(error)

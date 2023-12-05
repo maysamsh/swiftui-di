@@ -9,7 +9,23 @@ import Foundation
 import Combine
 
 final class APIService: NetworkingService {
-    func request<ResponseType>(type: ResponseType.Type, url: URL) -> AnyPublisher<ResponseType, Error> where ResponseType: Decodable {
+    func fetchImages() -> AnyPublisher<SampleImagesResponse, Error> {
+        guard let url = URL(string: RemoteAssets.images) else {
+            return Fail(error: NetworkingError.invalidURL)
+                .eraseToAnyPublisher()
+        }
+        return request(type: SampleImagesResponse.self, url: url)
+    }
+    
+    func fetchImageDetails() -> AnyPublisher<ExtraDataResponse, Error> {
+        guard let url = URL(string: RemoteAssets.extraData) else {
+            return Fail(error: NetworkingError.invalidURL)
+                .eraseToAnyPublisher()
+        }
+        return request(type: ExtraDataResponse.self, url: url)
+    }
+    
+    private func request<ResponseType>(type: ResponseType.Type, url: URL) -> AnyPublisher<ResponseType, Error> where ResponseType: Decodable {
         let session = URLSession.shared
         let decoder = JSONDecoder()
         
@@ -17,5 +33,24 @@ final class APIService: NetworkingService {
             .map(\.data)
             .decode(type: ResponseType.self, decoder: decoder)
             .eraseToAnyPublisher()
+    }    
+}
+
+final class MockAPIService: NetworkingService {
+    private let contentFile: String
+    private let detailFile: String
+    
+    init(contentFile: String = "", detailFile: String = "") {
+        self.contentFile = contentFile
+        self.detailFile = detailFile
     }
+    
+    func fetchImages() -> AnyPublisher<SampleImagesResponse, Error> {
+        
+    }
+    
+    func fetchImageDetails() -> AnyPublisher<ExtraDataResponse, Error> {
+        
+    }
+    
 }

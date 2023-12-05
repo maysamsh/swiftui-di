@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D52BF342B1D3F1D00D72761 /* StubReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52BF332B1D3F1D00D72761 /* StubReader.swift */; };
+		7D52BF362B1D3FA500D72761 /* Logger+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52BF352B1D3FA500D72761 /* Logger+Ext.swift */; };
+		7D52BF382B1D454200D72761 /* Error+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52BF372B1D454200D72761 /* Error+Ext.swift */; };
 		7D5E48362B02784A009B5FB1 /* TDD_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E48352B02784A009B5FB1 /* TDD_AppApp.swift */; };
 		7D5E48382B02784A009B5FB1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E48372B02784A009B5FB1 /* ContentView.swift */; };
 		7D5E483A2B02784B009B5FB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D5E48392B02784B009B5FB1 /* Assets.xcassets */; };
@@ -55,6 +58,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D52BF332B1D3F1D00D72761 /* StubReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubReader.swift; sourceTree = "<group>"; };
+		7D52BF352B1D3FA500D72761 /* Logger+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+Ext.swift"; sourceTree = "<group>"; };
+		7D52BF372B1D454200D72761 /* Error+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Ext.swift"; sourceTree = "<group>"; };
 		7D5E48322B02784A009B5FB1 /* TDD App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TDD App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D5E48352B02784A009B5FB1 /* TDD_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDD_AppApp.swift; sourceTree = "<group>"; };
 		7D5E48372B02784A009B5FB1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -169,6 +175,7 @@
 				7D5E48602B0278CE009B5FB1 /* NetworkingService.swift */,
 				7D5E48632B0278E4009B5FB1 /* RouterService.swift */,
 				7D5E48662B027BC0009B5FB1 /* APIService.swift */,
+				7D52BF332B1D3F1D00D72761 /* StubReader.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -176,7 +183,9 @@
 		7DC64E712B197D1600B95B87 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7D52BF352B1D3FA500D72761 /* Logger+Ext.swift */,
 				7DC64E722B197D2A00B95B87 /* Color+Ext.swift */,
+				7D52BF372B1D454200D72761 /* Error+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -339,7 +348,10 @@
 				7D5E48672B027BC0009B5FB1 /* APIService.swift in Sources */,
 				7D5E48612B0278CE009B5FB1 /* NetworkingService.swift in Sources */,
 				7DC64E732B197D2A00B95B87 /* Color+Ext.swift in Sources */,
+				7D52BF382B1D454200D72761 /* Error+Ext.swift in Sources */,
+				7D52BF342B1D3F1D00D72761 /* StubReader.swift in Sources */,
 				7DEAB97C2B16CFAE009AF0E8 /* ExtraDataResponse.swift in Sources */,
+				7D52BF362B1D3FA500D72761 /* Logger+Ext.swift in Sources */,
 				7DEAB96F2B16CDF3009AF0E8 /* ContentViewModel.swift in Sources */,
 				7DA4250A2B0A815F00BD70A1 /* DetailsView.swift in Sources */,
 				7D5E48382B02784A009B5FB1 /* ContentView.swift in Sources */,

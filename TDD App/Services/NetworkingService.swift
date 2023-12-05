@@ -9,15 +9,19 @@ import Foundation
 import Combine
 
 protocol NetworkingService: AnyObject {
-    func request<ResponseType: Decodable>(type: ResponseType.Type, url: URL) -> AnyPublisher<ResponseType, Error>
+    func fetchImages() -> AnyPublisher<SampleImagesResponse, Error>
+    func fetchImageDetails() -> AnyPublisher<ExtraDataResponse, Error>
 }
 
 enum NetworkingError: Error, CustomStringConvertible {
+    case invalidURL
     case network(Error)
     case parsing(Error)
     
     var description: String {
         switch self {
+        case .invalidURL:
+            return "# Invalid URL"
         case .network(let error):
             return "# Network error: \(error.localizedDescription)"
         case .parsing(let error):

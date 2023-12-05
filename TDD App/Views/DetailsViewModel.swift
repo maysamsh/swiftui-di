@@ -30,7 +30,7 @@ final class DetailsViewModel: ObservableObject {
             return
         }
         
-        apiService.request(type: ExtraDataResponse.self, url: url)
+        apiService.fetchImageDetails()
             .sink(receiveCompletion: { result in
                 if case let .failure(error) = result {
                     print(error)
