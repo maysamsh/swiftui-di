@@ -15,6 +15,7 @@ protocol NetworkingService: AnyObject {
 
 enum NetworkingError: Error, CustomStringConvertible {
     case invalidURL
+    case testing
     case network(Error)
     case parsing(Error)
     
@@ -22,6 +23,8 @@ enum NetworkingError: Error, CustomStringConvertible {
         switch self {
         case .invalidURL:
             return "# Invalid URL"
+        case .testing:
+            return "# Testing failed "
         case .network(let error):
             return "# Network error: \(error.localizedDescription)"
         case .parsing(let error):

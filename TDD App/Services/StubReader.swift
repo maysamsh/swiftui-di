@@ -6,21 +6,19 @@
 //
 
 import Foundation
-import OSLog
 
 struct StubReader {
-    static func readJson(_ filename: String) -> Data? {
+    static func readJson(_ filename: String) throws -> Data? {
         do {
             if let filePath = Bundle.main.path(forResource: filename, ofType: "json") {
                 let fileUrl = URL(fileURLWithPath: filePath)
                 let data = try Data(contentsOf: fileUrl)
                 return data
             } else {
-                Logger.logError(FileError.notFound)
+                throw FileError.notFound
             }
         } catch {
-            Logger.logError(error)
+            throw FileError.reading(error)
         }
-        return nil
     }
 }

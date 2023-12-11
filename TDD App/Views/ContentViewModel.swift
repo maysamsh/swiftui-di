@@ -7,36 +7,30 @@
 
 import Foundation
 import Combine
+import OSLog
 
 final class ContentViewModel: ObservableObject {
-    @Published private (set) var images: [ImageModel]
+    @Published private (set) var images: [ImageModel]?
     private let apiService: NetworkingService
     private var cancellable: Set<AnyCancellable>
     
     init(apiService: NetworkingService = APIService()) {
-        self.images = [ImageModel]()
         self.cancellable = Set<AnyCancellable>()
         self.apiService = apiService
-        fetch()
     }
     
     func fetch() {
-        guard let url = URL(string: RemoteAssets.images) else {
-            return
-        }
-        
         apiService.fetchImages()
-            .sink(receiveCompletion: { result in
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { [weak self] result in
                 if case let .failure(error) = result {
-                    print(error)
+                    self?.images = nil
+                    Logger.logError(error)
                 }
-            }, receiveValue: { response in
-                Task {@MainActor [weak self] in
-                    self?.handleRespose(response)
-                }
+            }, receiveValue: { [weak self] response in
+                self?.handleRespose(response)
             })
             .store(in: &cancellable)
-
     }
     
     private func handleRespose(_ response: SampleImagesResponse) {

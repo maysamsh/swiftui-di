@@ -26,10 +26,6 @@ final class DetailsViewModel: ObservableObject {
     }
     
     func fetch() {
-        guard let url = URL(string: RemoteAssets.extraData) else {
-            return
-        }
-        
         apiService.fetchImageDetails()
             .sink(receiveCompletion: { result in
                 if case let .failure(error) = result {

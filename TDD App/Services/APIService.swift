@@ -35,22 +35,3 @@ final class APIService: NetworkingService {
             .eraseToAnyPublisher()
     }    
 }
-
-final class MockAPIService: NetworkingService {
-    private let contentFile: String
-    private let detailFile: String
-    
-    init(contentFile: String = "", detailFile: String = "") {
-        self.contentFile = contentFile
-        self.detailFile = detailFile
-    }
-    
-    func fetchImages() -> AnyPublisher<SampleImagesResponse, Error> {
-        
-    }
-    
-    func fetchImageDetails() -> AnyPublisher<ExtraDataResponse, Error> {
-        
-    }
-    
-}
