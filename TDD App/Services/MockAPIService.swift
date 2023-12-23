@@ -52,7 +52,7 @@ final class MockAPIService: NetworkingService {
         }
         
         do {
-            if let data = try StubReader.readJson(self.contentFile) {
+            if let data = try StubReader.readJson(self.detailFile) {
                 let jsonData = try jsonDecoder.decode(ExtraDataResponse.self, from: data)
                 return Result.Publisher(jsonData)
                     .eraseToAnyPublisher()

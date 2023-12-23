@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DetailsView: View {
     @StateObject private var viewModel: DetailsViewModel
+    @State private var isAppeared = false
+
     private let imageModel: ImageModel
     
     init(_ model: ImageModel) {
@@ -22,19 +24,29 @@ struct DetailsView: View {
                 image
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 300)
             } placeholder: {
                 EmptyView()
             }
             if let extraData = viewModel.imageExtraData {
-                Text(extraData.story)
-                    .font(.caption)
-                    .padding()
+                VStack(alignment: .leading) {
+                    Text(extraData.date)
+                        .font(.caption)
+                    
+                    Text(extraData.story)
+                        .padding(.top)
+                }
+                .padding(.leading)
             }
             Spacer()
         }
+        .onAppear {
+            if !isAppeared {
+                viewModel.fetch()
+                isAppeared = true
+            }
+        }
         .navigationTitle(self.imageModel.title)
-        .background(viewModel.imageExtraData?.colour ?? Color.white)
+        .background(viewModel.viewBackgroundColour)
     }
 }
 
