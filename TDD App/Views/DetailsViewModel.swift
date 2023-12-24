@@ -8,16 +8,19 @@
 import Foundation
 import Combine
 import SwiftUI
+import OSLog
 
 final class DetailsViewModel: ObservableObject {
     @Published private (set) var imageExtraData: InfoItem?
+    @Published private (set) var viewError: Error?
     
     private var extraData: [InfoItem]
+    private var cancellable: Set<AnyCancellable>
     private let imageModel: ImageModel
     private let apiService: NetworkingService
-    private var cancellable: Set<AnyCancellable>
     private let dateFormatter = DateFormatter()
     
+    // MARK: - Public Methods
     init(imageModel: ImageModel, apiService: NetworkingService = APIService()) {
         self.apiService = apiService
         self.cancellable = Set<AnyCancellable>()
@@ -27,16 +30,15 @@ final class DetailsViewModel: ObservableObject {
         dateFormatter.timeStyle = .short
     }
     
-    var viewBackgroundColour: Color {
-        imageExtraData?.colour.opacity(0.3) ?? Color.white
-    }
-    
     func fetch() {
         apiService.fetchImageDetails()
             .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { result in
+            .sink(receiveCompletion: { [weak self] result in
                 if case let .failure(error) = result {
-                    print(error)
+                    Logger.logError(error)
+                    self?.viewError = error
+                } else {
+                    self?.viewError = nil
                 }
             }, receiveValue: { [weak self] response in
                 self?.handleRespose(response)
@@ -44,11 +46,18 @@ final class DetailsViewModel: ObservableObject {
             .store(in: &cancellable)
     }
     
+    // MARK: - Public Variables
+    var viewBackgroundColour: Color {
+        imageExtraData?.colour.opacity(0.3) ?? Color.white
+    }
+    
+    // MARK: - Private Methods
     private func handleRespose(_ response: ExtraDataResponse) {
         guard let extraDataResponse = response.sample else {
+            self.viewError = NetworkingError.invalidURL
             return
         }
-        
+        self.viewError = nil
         self.extraData = extraDataResponse.compactMap { item in
             if let story  = item.story,
                let colourString = item.colour,
@@ -60,14 +69,16 @@ final class DetailsViewModel: ObservableObject {
             }
             return nil
         }
-        print(extraData)
         findDataFor(id: imageModel.imageID)
     }
     
     private func findDataFor(id: String) {
         guard let image = self.extraData.filter({ $0.imageID == id }).first else {
+            Logger.logError(DetailsViewModelError.invalidID)
+            self.viewError = DetailsViewModelError.invalidID
             return
         }
+        self.viewError = nil
         self.imageExtraData = image
     }
     

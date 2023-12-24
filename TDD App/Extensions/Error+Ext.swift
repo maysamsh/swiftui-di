@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum FileError: Error, CustomStringConvertible {
+enum FileError: Error, CustomStringConvertible, LocalizedError {
     case notFound
     case badData
     case reading (Error)
@@ -15,11 +15,74 @@ enum FileError: Error, CustomStringConvertible {
     var description: String {
         switch self {
         case .notFound:
-            return "# File not found"
+            return "File not found"
         case .badData:
-            return "# Bad data in reading file"
+            return "Bad data in reading file"
         case .reading(let error):
-            return "# File reading error: \(error.localizedDescription)"
+            return "File reading error: \(error.localizedDescription)"
         }
+    }
+    
+    var errorDescription: String? {
+        return NSLocalizedString(self.description, comment: self.description)
+    }
+}
+
+enum NetworkingError: Error, CustomStringConvertible, LocalizedError {
+    case invalidURL
+    case invalidResponse
+    case testing
+    case network(Error)
+    case parsing(Error)
+    
+    var description: String {
+        switch self {
+        case .invalidURL:
+            return "Invalid URL"
+        case .invalidResponse:
+            return "The response is invalid."
+        case .testing:
+            return "Testing failed "
+        case .network(let error):
+            return "Network error: \(error.localizedDescription)"
+        case .parsing(let error):
+            return "Parsing error: \(error.localizedDescription)"
+        }
+    }
+    
+    var errorDescription: String? {
+        return NSLocalizedString(self.description, comment: self.description)
+    }
+
+}
+
+enum DetailsViewModelError: Error, CustomStringConvertible, LocalizedError {
+    case invalidID
+    
+    var description: String {
+        switch self {
+        case .invalidID:
+            return "The image you are trying to see does not exist."
+        }
+    }
+    
+    var errorDescription: String? {
+        return NSLocalizedString(self.description, comment: self.description)
+    }
+    
+}
+
+enum GenericErro: Error, CustomStringConvertible, LocalizedError {
+    case somethingWentWrong
+    
+    var description: String {
+        switch self {
+        case .somethingWentWrong:
+            return "Something went wrong!"
+        }
+    }
+    
+    var errorDescription: String? {
+        return NSLocalizedString(self.description, comment: self.description)
     }
 }

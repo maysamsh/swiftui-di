@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D4F31142B389D0C00272181 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4F31132B389D0C00272181 /* ErrorView.swift */; };
+		7D4F31152B38A65E00272181 /* Error+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52BF372B1D454200D72761 /* Error+Ext.swift */; };
 		7D52BF362B1D3FA500D72761 /* Logger+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52BF352B1D3FA500D72761 /* Logger+Ext.swift */; };
 		7D5E48362B02784A009B5FB1 /* TDD_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E48352B02784A009B5FB1 /* TDD_AppApp.swift */; };
 		7D5E48382B02784A009B5FB1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E48372B02784A009B5FB1 /* ContentView.swift */; };
@@ -66,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D4F31132B389D0C00272181 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		7D52BF332B1D3F1D00D72761 /* StubReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubReader.swift; sourceTree = "<group>"; };
 		7D52BF352B1D3FA500D72761 /* Logger+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+Ext.swift"; sourceTree = "<group>"; };
 		7D52BF372B1D454200D72761 /* Error+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Ext.swift"; sourceTree = "<group>"; };
@@ -219,6 +222,7 @@
 				7DA425092B0A815F00BD70A1 /* DetailsView.swift */,
 				7DC64E742B1984E500B95B87 /* DetailsViewModel.swift */,
 				7DEAB96E2B16CDF3009AF0E8 /* ContentViewModel.swift */,
+				7D4F31132B389D0C00272181 /* ErrorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -370,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DEAB9792B16CE5F009AF0E8 /* SampleImagesResponse.swift in Sources */,
+				7D4F31152B38A65E00272181 /* Error+Ext.swift in Sources */,
 				7D5E48642B0278E4009B5FB1 /* RouterService.swift in Sources */,
 				7D5E48672B027BC0009B5FB1 /* APIService.swift in Sources */,
 				7D5E48612B0278CE009B5FB1 /* NetworkingService.swift in Sources */,
@@ -384,6 +389,7 @@
 				7DC64E752B1984E500B95B87 /* DetailsViewModel.swift in Sources */,
 				7DEAB9762B16CE43009AF0E8 /* RemoteAssets.swift in Sources */,
 				7DEAB9732B16CE2A009AF0E8 /* ImageModel.swift in Sources */,
+				7D4F31142B389D0C00272181 /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
