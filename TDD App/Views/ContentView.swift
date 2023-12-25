@@ -9,14 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var viewModel: ContentViewModel
-    @State private var isAppeared = false
     
     init() {
         _viewModel = StateObject(wrappedValue: ContentViewModel())
     }
     
-    var body: some View {
-        NavigationStack {
+    @ViewBuilder
+    private var content: some View {
+        if let error = viewModel.viewError {
+            ErrorView(error)
+        } else {
             VStack(alignment: .leading) {
                 if let images = viewModel.images {
                     ForEach(images) { item in
@@ -36,13 +38,16 @@ struct ContentView: View {
                             }
                         }
                     }
-                } 
-            }
-            .onAppear {
-                if !isAppeared {
-                    viewModel.fetch()
-                    isAppeared = true
                 }
+            }
+        }
+    }
+    
+    var body: some View {
+        NavigationStack {
+            content
+            .onAppear {
+                viewModel.viewDidAppear()
             }
         }
         

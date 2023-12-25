@@ -9,8 +9,6 @@ import SwiftUI
 
 struct DetailsView: View {
     @StateObject private var viewModel: DetailsViewModel
-    @State private var isAppeared = false
-
     private let imageModel: ImageModel
     
     init(_ model: ImageModel) {
@@ -49,10 +47,7 @@ struct DetailsView: View {
     var body: some View {
         content
         .onAppear {
-            if !isAppeared {
-                viewModel.fetch()
-                isAppeared = true
-            }
+            viewModel.viewDidAppear()
         }
         .navigationTitle(self.imageModel.title)
         .background(viewModel.viewBackgroundColour)

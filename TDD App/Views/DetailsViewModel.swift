@@ -13,7 +13,7 @@ import OSLog
 final class DetailsViewModel: ObservableObject {
     @Published private (set) var imageExtraData: InfoItem?
     @Published private (set) var viewError: Error?
-    
+    private var isAppeared = false
     private var extraData: [InfoItem]
     private var cancellable: Set<AnyCancellable>
     private let imageModel: ImageModel
@@ -30,7 +30,19 @@ final class DetailsViewModel: ObservableObject {
         dateFormatter.timeStyle = .short
     }
     
-    func fetch() {
+    // MARK: - Public Variables
+    func viewDidAppear() {
+        if !isAppeared {
+            fetch()
+            isAppeared = true
+        }
+    }
+    
+    var viewBackgroundColour: Color {
+        imageExtraData?.colour.opacity(0.3) ?? Color.white
+    }
+    
+    private func fetch() {
         apiService.fetchImageDetails()
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { [weak self] result in
@@ -44,11 +56,6 @@ final class DetailsViewModel: ObservableObject {
                 self?.handleRespose(response)
             })
             .store(in: &cancellable)
-    }
-    
-    // MARK: - Public Variables
-    var viewBackgroundColour: Color {
-        imageExtraData?.colour.opacity(0.3) ?? Color.white
     }
     
     // MARK: - Private Methods
