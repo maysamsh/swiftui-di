@@ -20,8 +20,6 @@
 		7D5E48532B02784C009B5FB1 /* TDD_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E48522B02784C009B5FB1 /* TDD_AppUITestsLaunchTests.swift */; };
 		7D5E48612B0278CE009B5FB1 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E48602B0278CE009B5FB1 /* NetworkingService.swift */; };
 		7D5E48622B0278CE009B5FB1 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E48602B0278CE009B5FB1 /* NetworkingService.swift */; };
-		7D5E48642B0278E4009B5FB1 /* RouterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E48632B0278E4009B5FB1 /* RouterService.swift */; };
-		7D5E48652B0278E4009B5FB1 /* RouterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E48632B0278E4009B5FB1 /* RouterService.swift */; };
 		7D5E48672B027BC0009B5FB1 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E48662B027BC0009B5FB1 /* APIService.swift */; };
 		7D5E48682B027BC0009B5FB1 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5E48662B027BC0009B5FB1 /* APIService.swift */; };
 		7DA4250A2B0A815F00BD70A1 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA425092B0A815F00BD70A1 /* DetailsView.swift */; };
@@ -85,7 +83,6 @@
 		7D5E48502B02784C009B5FB1 /* TDD_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDD_AppUITests.swift; sourceTree = "<group>"; };
 		7D5E48522B02784C009B5FB1 /* TDD_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDD_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7D5E48602B0278CE009B5FB1 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
-		7D5E48632B0278E4009B5FB1 /* RouterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterService.swift; sourceTree = "<group>"; };
 		7D5E48662B027BC0009B5FB1 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		7DA425092B0A815F00BD70A1 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		7DBA42602B3F5BF800CB3D23 /* images-sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "images-sample.json"; sourceTree = "<group>"; };
@@ -191,7 +188,6 @@
 			isa = PBXGroup;
 			children = (
 				7D5E48602B0278CE009B5FB1 /* NetworkingService.swift */,
-				7D5E48632B0278E4009B5FB1 /* RouterService.swift */,
 				7D5E48662B027BC0009B5FB1 /* APIService.swift */,
 				7D52BF332B1D3F1D00D72761 /* StubReader.swift */,
 				7DD784E12B26190100D19CFB /* MockAPIService.swift */,
@@ -378,7 +374,6 @@
 			files = (
 				7DEAB9792B16CE5F009AF0E8 /* SampleImagesResponse.swift in Sources */,
 				7D4F31152B38A65E00272181 /* Error+Ext.swift in Sources */,
-				7D5E48642B0278E4009B5FB1 /* RouterService.swift in Sources */,
 				7D5E48672B027BC0009B5FB1 /* APIService.swift in Sources */,
 				7D5E48612B0278CE009B5FB1 /* NetworkingService.swift in Sources */,
 				7DC64E732B197D2A00B95B87 /* Color+Ext.swift in Sources */,
@@ -412,7 +407,6 @@
 				7DEAB97A2B16CE5F009AF0E8 /* SampleImagesResponse.swift in Sources */,
 				7D5E48682B027BC0009B5FB1 /* APIService.swift in Sources */,
 				7DC64E762B1984E500B95B87 /* DetailsViewModel.swift in Sources */,
-				7D5E48652B0278E4009B5FB1 /* RouterService.swift in Sources */,
 				7D4F31172B3A0DC500272181 /* DetailsViewModelTests.swift in Sources */,
 				7DEAB9702B16CDF3009AF0E8 /* ContentViewModel.swift in Sources */,
 				7DD784E22B26190100D19CFB /* MockAPIService.swift in Sources */,

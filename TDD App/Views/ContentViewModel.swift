@@ -38,8 +38,6 @@ final class ContentViewModel: ObservableObject {
                     self?.images = nil
                     self?.viewError = error
                     Logger.logError(error)
-                } else {
-                    self?.viewError = nil
                 }
             }, receiveValue: { [weak self] response in
                 self?.handleRespose(response)

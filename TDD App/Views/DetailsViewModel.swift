@@ -13,8 +13,9 @@ import OSLog
 final class DetailsViewModel: ObservableObject {
     @Published private (set) var imageExtraData: InfoItem?
     @Published private (set) var viewError: Error?
+    @Published private var extraData: [InfoItem]
+
     private var isAppeared = false
-    private var extraData: [InfoItem]
     private var cancellable: Set<AnyCancellable>
     private let imageModel: ImageModel
     private let apiService: NetworkingService
@@ -49,8 +50,6 @@ final class DetailsViewModel: ObservableObject {
                 if case let .failure(error) = result {
                     Logger.logError(error)
                     self?.viewError = error
-                } else {
-                    self?.viewError = nil
                 }
             }, receiveValue: { [weak self] response in
                 self?.handleRespose(response)
