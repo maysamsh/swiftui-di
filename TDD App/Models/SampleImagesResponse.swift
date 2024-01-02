@@ -17,7 +17,7 @@ struct SampleImagesResponse: Codable {
 
         enum CodingKeys: String, CodingKey {
             case description
-            case imageURL = "image-url"
+            case imageURL = "image_url"
             case id
         }
     }
