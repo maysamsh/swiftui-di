@@ -40,12 +40,12 @@ final class ContentViewModel: ObservableObject {
                     Logger.logError(error)
                 }
             }, receiveValue: { [weak self] response in
-                self?.handleRespose(response)
+                self?.handleResponse(response)
             })
             .store(in: &cancellable)
     }
     
-    private func handleRespose(_ response: SampleImagesResponse) {
+    private func handleResponse(_ response: SampleImagesResponse) {
         guard let responseImages = response.sample else {
             Logger.logError(NetworkingError.invalidResponse)
             self.viewError = NetworkingError.invalidResponse

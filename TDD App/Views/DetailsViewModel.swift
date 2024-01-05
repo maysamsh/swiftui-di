@@ -52,13 +52,13 @@ final class DetailsViewModel: ObservableObject {
                     self?.viewError = error
                 }
             }, receiveValue: { [weak self] response in
-                self?.handleRespose(response)
+                self?.handleResponse(response)
             })
             .store(in: &cancellable)
     }
     
     // MARK: - Private Methods
-    private func handleRespose(_ response: ExtraDataResponse) {
+    private func handleResponse(_ response: ExtraDataResponse) {
         guard let extraDataResponse = response.sample else {
             self.viewError = NetworkingError.invalidURL
             return
