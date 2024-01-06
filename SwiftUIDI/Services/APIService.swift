@@ -28,7 +28,8 @@ final class APIService: NetworkingService {
     private func request<ResponseType>(type: ResponseType.Type, url: URL) -> AnyPublisher<ResponseType, Error> where ResponseType: Decodable {
         let session = URLSession.shared
         let decoder = JSONDecoder()
-        
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
         return session.dataTaskPublisher(for: url)
             .map(\.data)
             .decode(type: ResponseType.self, decoder: decoder)

@@ -1,6 +1,6 @@
 //
 //  ContentViewModelTests.swift
-//  TDD AppTests
+//  DI UnitTest
 //
 //  Created by Maysam Shahsavari on 2023-11-13.
 //
@@ -8,13 +8,19 @@
 import XCTest
 import Combine
 
-@testable import TDD_App
+@testable import SwiftUI_DI
 
 final class ContentViewModelTests: XCTestCase {
     var cancellables = Set<AnyCancellable>()
+    let decoder = JSONDecoder()
+    
+    override func setUp() {
+        decoder.dateDecodingStrategy = .iso8601
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+    }
     
     func testFetch() {
-        let service = MockAPIService(isSuccessful: true)
+        let service = MockAPIService(isSuccessful: true, jsonDecoder: self.decoder)
         let sut = ContentViewModel(apiService: service)
         let fetchImagesExpectation = expectation(description: "Fetching images")
         
@@ -30,7 +36,7 @@ final class ContentViewModelTests: XCTestCase {
     }
     
     func testFetchError() {
-        let service = MockAPIService(isSuccessful: false)
+        let service = MockAPIService(isSuccessful: false, jsonDecoder: self.decoder)
         let sut = ContentViewModel(apiService: service)
         let fetchImagesExpectation = expectation(description: "Fetching images")
         

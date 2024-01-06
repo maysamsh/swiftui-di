@@ -1,6 +1,6 @@
 //
 //  DetailsViewModelTests.swift
-//  TDD AppTests
+//  DI UnitTest
 //
 //  Created by Maysam Shahsavari on 2023-12-25.
 //
@@ -8,18 +8,24 @@
 import XCTest
 import Combine
 
-@testable import TDD_App
+@testable import SwiftUI_DI
 
 final class DetailsViewModelTests: XCTestCase {
     var cancellables = Set<AnyCancellable>()
-
+    let decoder = JSONDecoder()
+    
+    override func setUp() {
+        decoder.dateDecodingStrategy = .iso8601
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+    }
+    
     func testImageDetail() {
         guard let image = fetchTestImage() else {
             XCTFail("The image is nil")
             return
         }
         
-        let service = MockAPIService(isSuccessful: true)
+        let service = MockAPIService(isSuccessful: true, jsonDecoder: self.decoder)
         let sut = DetailsViewModel(imageModel: image, apiService: service)
         let fetchImagesExpectation = expectation(description: "Fetching image details")
 
@@ -41,11 +47,11 @@ final class DetailsViewModelTests: XCTestCase {
             return nil
         }
         
-        guard let image = try? JSONDecoder().decode(SampleImagesResponse.self, from: data).sample?.first else {
+        guard let image = try? self.decoder.decode(SampleImagesResponse.self, from: data).sample?.first else {
             return nil
         }
         
-        guard let urlString = image.imageURL,
+        guard let urlString = image.imageUrl,
                 let url = URL(string: urlString),
                 let title = image.description,
                 let id = image.id else {

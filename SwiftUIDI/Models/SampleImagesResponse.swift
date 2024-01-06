@@ -12,13 +12,7 @@ struct SampleImagesResponse: Codable {
     
     struct ImageItem: Codable {
         let description: String?
-        let imageURL: String?
+        let imageUrl: String?
         let id: String?
-
-        enum CodingKeys: String, CodingKey {
-            case description
-            case imageURL = "image_url"
-            case id
-        }
     }
 }

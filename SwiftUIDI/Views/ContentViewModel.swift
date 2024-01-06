@@ -54,7 +54,7 @@ final class ContentViewModel: ObservableObject {
         
         self.viewError = nil
         self.images = responseImages.compactMap { item in
-            if let urlString = item.imageURL,
+            if let urlString = item.imageUrl,
                let url = URL(string: urlString),
                let imageID = item.id,
                let title = item.description {
