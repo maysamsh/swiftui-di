@@ -14,7 +14,7 @@ final class ContentViewModel: ObservableObject {
     @Published private (set) var viewError: Error?
     private let apiService: NetworkingService
     private var cancellable: Set<AnyCancellable>
-    private var isAppeared = false
+    private (set) var isAppeared = false
 
     // MARK: - Public Methods
     init(apiService: NetworkingService = APIService()) {
@@ -40,27 +40,32 @@ final class ContentViewModel: ObservableObject {
                     Logger.logError(error)
                 }
             }, receiveValue: { [weak self] response in
-                self?.handleResponse(response)
+                self?.images = self?.createImagesList(response)
             })
             .store(in: &cancellable)
     }
     
-    private func handleResponse(_ response: SampleImagesResponse) {
+    func createImagesList(_ response: SampleImagesResponse) -> [ImageModel]? {
         guard let responseImages = response.sample else {
             Logger.logError(NetworkingError.invalidResponse)
             self.viewError = NetworkingError.invalidResponse
-            return
+            return nil
         }
         
         self.viewError = nil
-        self.images = responseImages.compactMap { item in
-            if let urlString = item.imageUrl,
-               let url = URL(string: urlString),
-               let imageID = item.id,
-               let title = item.description {
-                return ImageModel(imageID: imageID, title: title, url: url)
-            }
-            return nil
+        return responseImages.compactMap { item in
+            extractImage(item)
         }
+    }
+    
+    func extractImage(_ item: SampleImagesResponse.ImageItem) -> ImageModel? {
+        if let urlString = item.imageUrl,
+           let url = URL(string: urlString),
+           let imageID = item.id,
+           let title = item.description, 
+            url.isValid  {
+            return ImageModel(imageID: imageID, title: title, url: url)
+        }
+        return nil
     }
 }

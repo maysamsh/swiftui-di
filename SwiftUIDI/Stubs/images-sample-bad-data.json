@@ -1,0 +1,22 @@
+{
+    "sample":[
+      {
+        "id":"4cdad0d1-aef8-48a5-832b-18c6c973f084",
+        "description":"A laptop on a desk",
+        "image_url":"https//picsum.photos/id/0/1000/600"
+      },
+      {
+        "description":"A laptop on a desk",
+        "image_url":"https://picsum.photos/id/0/1000/600"
+      },
+      {
+        "id":"4cdad0d1-aef8-48a5-832b-18c6c973f084",
+        "image_url":"https//picsum.photos/id/0/1000/600"
+      },
+      {
+        "id":"4cdad0d1-aef8-48a5-832b-18c6c973f084",
+        "description":"A laptop on a desk",
+        "image_url":"https://picsum.photos/id/0/1000/600"
+      }
+    ]
+  }

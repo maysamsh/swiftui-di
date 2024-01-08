@@ -58,11 +58,17 @@ enum NetworkingError: Error, CustomStringConvertible, LocalizedError {
 
 enum DetailsViewModelError: Error, CustomStringConvertible, LocalizedError {
     case invalidID
+    case nilID
+    case emptyDetailsList
     
     var description: String {
         switch self {
         case .invalidID:
             return "The image you are trying to see does not exist."
+        case .nilID:
+            return "Something went wrong, try again!"
+        case .emptyDetailsList:
+            return "Image detail is not available, try again later."
         }
     }
     
@@ -70,19 +76,4 @@ enum DetailsViewModelError: Error, CustomStringConvertible, LocalizedError {
         return NSLocalizedString(self.description, comment: self.description)
     }
     
-}
-
-enum GenericErro: Error, CustomStringConvertible, LocalizedError {
-    case somethingWentWrong
-    
-    var description: String {
-        switch self {
-        case .somethingWentWrong:
-            return "Something went wrong!"
-        }
-    }
-    
-    var errorDescription: String? {
-        return NSLocalizedString(self.description, comment: self.description)
-    }
 }
