@@ -10,7 +10,7 @@ import Combine
 
 final class APIService: NetworkingService {
     func fetchImages() -> AnyPublisher<SampleImagesResponse, Error> {
-        guard let url = URL(string: RemoteAssets.images) else {
+        guard let url = URL(string: RemoteAssets.images + "t") else {
             return Fail(error: NetworkingError.invalidURL)
                 .eraseToAnyPublisher()
         }
