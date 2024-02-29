@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var viewModel: ContentViewModel
-    
-    init() {
-        _viewModel = StateObject(wrappedValue: ContentViewModel())
+
+    init(apiService: NetworkingService) {
+        _viewModel = StateObject(wrappedValue: ContentViewModel(apiService: apiService))
     }
     
     @ViewBuilder
@@ -23,7 +23,7 @@ struct ContentView: View {
                 if let images = viewModel.images {
                     ForEach(images) { item in
                         NavigationLink {
-                            DetailsView(item)
+                            DetailsView(item, apiSerrvice: viewModel.apiService)
                         } label: {
                             HStack {
                                 AsyncImage(url: item.url) { image in
@@ -55,5 +55,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    let apiService: NetworkingService = APIService.previewAPIService()
+    return ContentView(apiService: apiService)
 }
+

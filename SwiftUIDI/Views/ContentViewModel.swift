@@ -12,12 +12,12 @@ import OSLog
 final class ContentViewModel: ObservableObject {
     @Published private (set) var images: [ImageModel]?
     @Published private (set) var viewError: Error?
-    private let apiService: NetworkingService
+    let apiService: NetworkingService
     private var cancellable: Set<AnyCancellable>
     private var isAppeared = false
 
     // MARK: - Public Methods
-    init(apiService: NetworkingService = APIService()) {
+    init(apiService: NetworkingService) {
         self.cancellable = Set<AnyCancellable>()
         self.apiService = apiService
     }

@@ -22,7 +22,7 @@ final class DetailsViewModel: ObservableObject {
     private let dateFormatter = DateFormatter()
     
     // MARK: - Public Methods
-    init(imageModel: ImageModel, apiService: NetworkingService = APIService()) {
+    init(imageModel: ImageModel, apiService: NetworkingService) {
         self.apiService = apiService
         self.cancellable = Set<AnyCancellable>()
         self.extraData = [InfoItem]()
@@ -70,6 +70,7 @@ final class DetailsViewModel: ObservableObject {
                let dateObject = item.date,
                let imageID = item.id {
                 let colour = Color(hex: colourString)
+                print("## date:", dateObject.timeIntervalSince1970)
                 let date = formatDate(from: dateObject)
                 return InfoItem(imageID: imageID, story: story, date: date, colour: colour)
             }

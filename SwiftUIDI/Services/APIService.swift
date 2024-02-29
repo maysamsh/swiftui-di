@@ -9,8 +9,23 @@ import Foundation
 import Combine
 
 final class APIService: NetworkingService {
+    let imagesPath: String
+    let extraDataPath: String
+    let decoder: JSONDecoder
+    let session: URLSession
+    
+    init(urlSession: URLSession,
+         decoder: JSONDecoder,
+         imagesPath: String,
+         extraDataPath: String) {
+        self.imagesPath = imagesPath
+        self.extraDataPath = extraDataPath
+        self.decoder = decoder
+        self.session = urlSession
+    }
+    
     func fetchImages() -> AnyPublisher<SampleImagesResponse, Error> {
-        guard let url = URL(string: RemoteAssets.images) else {
+        guard let url = URL(string: imagesPath) else {
             return Fail(error: NetworkingError.invalidURL)
                 .eraseToAnyPublisher()
         }
@@ -18,7 +33,7 @@ final class APIService: NetworkingService {
     }
     
     func fetchImageDetails() -> AnyPublisher<ExtraDataResponse, Error> {
-        guard let url = URL(string: RemoteAssets.extraData) else {
+        guard let url = URL(string: extraDataPath) else {
             return Fail(error: NetworkingError.invalidURL)
                 .eraseToAnyPublisher()
         }
@@ -26,13 +41,21 @@ final class APIService: NetworkingService {
     }
     
     private func request<ResponseType>(type: ResponseType.Type, url: URL) -> AnyPublisher<ResponseType, Error> where ResponseType: Decodable {
-        let session = URLSession.shared
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        decoder.dateDecodingStrategy = .iso8601
         return session.dataTaskPublisher(for: url)
             .map(\.data)
             .decode(type: ResponseType.self, decoder: decoder)
             .eraseToAnyPublisher()
     }    
+}
+extension APIService {
+    static func previewAPIService() -> APIService {
+        let session: URLSession = URLSession.shared
+        let decoder: JSONDecoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
+        return APIService(urlSession: session,
+                          decoder: decoder,
+                          imagesPath: RemoteAssets.images,
+                          extraDataPath: RemoteAssets.extraData)
+    }
 }
